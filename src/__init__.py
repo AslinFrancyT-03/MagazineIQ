@@ -1,0 +1,1 @@
+# MagazineIQ src package

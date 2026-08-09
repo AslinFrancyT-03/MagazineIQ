@@ -1,0 +1,774 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   MagazineIQ — Premium Vintage Parchment Theme
+   Version 2.0 — Complete Heritage Archive Redesign
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600;700&display=swap');
+
+/* ───────────────────────────────────────────────────────────────────────
+   CSS Custom Properties
+   ─────────────────────────────────────────────────────────────────────── */
+:root {
+    /* Parchment Backgrounds */
+    --parch-light:  #F4E6C1;
+    --parch-mid:    #EED7A7;
+    --parch-dark:   #D8B97B;
+
+    /* Browns */
+    --brown-primary: #5A3E2B;
+    --brown-dark:    #3B2416;
+    --brown-hover:   #6B472B;
+
+    /* Accents */
+    --gold:         #A36A2A;
+    --border:       #A88454;
+    --border-light: rgba(168, 132, 84, 0.3);
+
+    /* Chart / Data */
+    --chart-1: #5A3E2B;
+    --chart-2: #8B6F47;
+    --chart-3: #A36A2A;
+    --chart-4: #E8DCC8;
+    --chart-5: #6B5D45;
+
+    /* Typography */
+    --font-heading: 'Cormorant Garamond', Georgia, serif;
+    --font-body:    'EB Garamond', Georgia, serif;
+    --font-nav:     'Cinzel', Georgia, serif;
+
+    /* Radii */
+    --radius:    12px;
+    --radius-sm: 8px;
+    --radius-xs: 4px;
+
+    /* Shadows */
+    --shadow-sm:  0 2px 6px  rgba(59, 36, 22, 0.08);
+    --shadow-md:  0 4px 12px rgba(59, 36, 22, 0.12);
+    --shadow-lg:  0 8px 24px rgba(59, 36, 22, 0.16);
+
+    /* Spacing */
+    --gap-sm: 16px;
+    --gap-md: 24px;
+    --gap-lg: 32px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   SVG Noise Parchment Texture (Data URI — zero HTTP requests)
+   ─────────────────────────────────────────────────────────────────────── */
+.parchment-texture {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Global Base
+   ─────────────────────────────────────────────────────────────────────── */
+html, body, [class*="css"], .stApp {
+    font-family: var(--font-body) !important;
+    color: var(--brown-dark) !important;
+}
+
+/* Parchment app background with subtle noise */
+.stApp {
+    background-color: var(--parch-light) !important;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+}
+
+/* Page content container */
+.main .block-container {
+    padding: var(--gap-lg) var(--gap-lg) var(--gap-lg) var(--gap-lg) !important;
+    max-width: 1200px;
+    animation: miq-fadein 0.5s ease-in-out;
+}
+
+@keyframes miq-fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Typography
+   ─────────────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading) !important;
+    color: var(--brown-dark) !important;
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+}
+
+/* Streamlit auto-generated heading classes */
+[data-testid="stMarkdownContainer"] h1 { font-size: 2.8rem !important; font-weight: 700 !important; }
+[data-testid="stMarkdownContainer"] h2 { font-size: 2.0rem !important; font-weight: 600 !important; }
+[data-testid="stMarkdownContainer"] h3 { font-size: 1.5rem !important; font-weight: 600 !important; color: var(--brown-primary) !important; }
+
+/* Body text */
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] span {
+    font-family: var(--font-body) !important;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--brown-dark) !important;
+}
+
+/* Page title (st.title) */
+[data-testid="stHeading"] h1,
+.st-emotion-cache-10trblm {
+    font-family: var(--font-heading) !important;
+    font-size: 2.8rem !important;
+    font-weight: 700 !important;
+    color: var(--brown-dark) !important;
+}
+
+/* Caption / small text */
+[data-testid="stCaptionContainer"] p,
+.stCaption p {
+    font-family: var(--font-nav) !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.8px;
+    color: var(--border) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Decorative Ornamental Divider (hr)
+   Wraps the ❦ fleuron in a gold rule — pure CSS, no images
+   ─────────────────────────────────────────────────────────────────────── */
+hr {
+    border: none !important;
+    height: 2px;
+    background:
+        linear-gradient(
+            to right,
+            transparent 0%,
+            var(--border) 20%,
+            var(--gold) 50%,
+            var(--border) 80%,
+            transparent 100%
+        ) !important;
+    margin: var(--gap-lg) 0 !important;
+    position: relative;
+    overflow: visible;
+}
+hr::after {
+    content: "❦";
+    font-size: 1.4rem;
+    color: var(--gold);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--parch-light);
+    padding: 0 18px;
+    line-height: 1;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Sidebar
+   ─────────────────────────────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background-color: var(--brown-primary) !important;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    border-right: 2px solid var(--border) !important;
+}
+
+/* Sidebar title */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] [data-testid="stHeading"] h1 {
+    font-family: var(--font-heading) !important;
+    font-size: 1.9rem !important;
+    font-weight: 700 !important;
+    color: var(--parch-light) !important;
+    text-align: center;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(168, 132, 84, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Sidebar all text */
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] label {
+    font-family: var(--font-nav) !important;
+    color: var(--parch-light) !important;
+    letter-spacing: 0.6px;
+}
+
+[data-testid="stSidebar"] .stCaption p {
+    color: var(--parch-dark) !important;
+    font-size: 0.72rem !important;
+}
+
+/* Navigation radio — container */
+[data-testid="stSidebar"] .stRadio > div {
+    gap: 2px;
+}
+
+/* Navigation radio — each label (nav item) */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label {
+    background: transparent !important;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    padding: 10px 18px !important;
+    margin: 1px 0;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
+    background: rgba(163, 106, 42, 0.2) !important;
+    border-left-color: rgba(163, 106, 42, 0.5);
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
+    background: rgba(163, 106, 42, 0.25) !important;
+    border-left: 4px solid var(--parch-dark) !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label p {
+    font-family: var(--font-nav) !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+    color: var(--parch-light) !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] p {
+    color: var(--parch-dark) !important;
+    font-weight: 700 !important;
+}
+
+/* Hide default radio circle */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label > div:first-child {
+    display: none !important;
+}
+
+/* Sidebar markdown hr */
+[data-testid="stSidebar"] hr {
+    background: rgba(168, 132, 84, 0.4) !important;
+    height: 1px !important;
+    margin: 12px 0 !important;
+}
+[data-testid="stSidebar"] hr::after { display: none !important; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   Metric / Statistic Cards
+   ─────────────────────────────────────────────────────────────────────── */
+[data-testid="stMetric"] {
+    background-color: var(--parch-light);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--gap-md) !important;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+/* Antique gold accent line at top of metric card */
+[data-testid="stMetric"]::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    border-radius: 0 0 4px 4px;
+}
+
+/* Inner decorative inset border */
+[data-testid="stMetric"]::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid var(--border-light);
+    border-radius: calc(var(--radius) - 4px);
+    pointer-events: none;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+[data-testid="stMetricLabel"] > div {
+    font-family: var(--font-nav) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    color: var(--brown-primary) !important;
+}
+
+[data-testid="stMetricValue"] > div {
+    font-family: var(--font-heading) !important;
+    font-size: 2.4rem !important;
+    font-weight: 700 !important;
+    color: var(--brown-dark) !important;
+    line-height: 1.2 !important;
+}
+
+[data-testid="stMetricDelta"] > div {
+    font-family: var(--font-nav) !important;
+    font-size: 0.78rem !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Buttons
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Primary buttons */
+.stButton > button {
+    font-family: var(--font-nav) !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    background-color: var(--brown-primary) !important;
+    color: #F8F2E5 !important;
+    border: 1px solid var(--brown-dark) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 10px 24px !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: background-color 0.2s ease-in-out,
+                box-shadow 0.2s ease-in-out,
+                transform 0.15s ease !important;
+}
+
+.stButton > button:hover {
+    background-color: var(--brown-hover) !important;
+    box-shadow: var(--shadow-md) !important;
+    transform: translateY(-1px);
+    color: #F8F2E5 !important;
+    border-color: var(--brown-dark) !important;
+}
+
+.stButton > button:active {
+    background-color: var(--brown-dark) !important;
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15) !important;
+}
+
+/* Secondary / kind="secondary" buttons */
+.stButton > button[kind="secondary"] {
+    background-color: var(--parch-light) !important;
+    color: var(--brown-dark) !important;
+    border: 1.5px solid var(--border) !important;
+}
+
+.stButton > button[kind="secondary"]:hover {
+    background-color: var(--parch-mid) !important;
+    border-color: var(--gold) !important;
+}
+
+/* Download buttons */
+.stDownloadButton > button {
+    font-family: var(--font-nav) !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.8px !important;
+    background-color: var(--parch-mid) !important;
+    color: var(--brown-dark) !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    transition: all 0.2s ease !important;
+}
+
+.stDownloadButton > button:hover {
+    background-color: var(--parch-dark) !important;
+    border-color: var(--gold) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Form Inputs
+   ─────────────────────────────────────────────────────────────────────── */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    font-family: var(--font-body) !important;
+    font-size: 1rem !important;
+    color: var(--brown-dark) !important;
+    background-color: #F8F2E5 !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 10px 14px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 8px rgba(163, 106, 42, 0.2) !important;
+    outline: none !important;
+}
+
+.stTextInput > div > div > input::placeholder,
+.stTextArea > div > div > textarea::placeholder {
+    color: rgba(168, 132, 84, 0.7) !important;
+    font-style: italic;
+}
+
+/* Input labels */
+.stTextInput label p,
+.stTextArea label p,
+.stSelectbox label p,
+.stSlider label p,
+.stRadio label p,
+.stFileUploader label p {
+    font-family: var(--font-nav) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    color: var(--brown-dark) !important;
+}
+
+/* Select / Dropdown */
+.stSelectbox > div > div {
+    font-family: var(--font-body) !important;
+    color: var(--brown-dark) !important;
+    background-color: var(--parch-light) !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    transition: border-color 0.2s ease !important;
+}
+
+.stSelectbox > div > div:focus-within {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 8px rgba(163, 106, 42, 0.2) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   File Uploader
+   ─────────────────────────────────────────────────────────────────────── */
+[data-testid="stFileUploader"] {
+    background-color: var(--parch-mid);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    border: 2px dashed var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: var(--gap-md) !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--gold) !important;
+    background-color: var(--parch-dark);
+}
+
+[data-testid="stFileUploader"] p,
+[data-testid="stFileUploader"] span {
+    font-family: var(--font-body) !important;
+    color: var(--brown-primary) !important;
+}
+
+/* Fix overlapping text bug in File Uploader button */
+[data-testid="stFileUploader"] button {
+    font-size: 0 !important;
+    font-family: var(--font-nav) !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    background-color: var(--brown-primary) !important;
+    color: #F8F2E5 !important;
+    border: 1px solid var(--brown-dark) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 10px 24px !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.2s ease-in-out !important;
+    position: relative !important;
+}
+
+[data-testid="stFileUploader"] button:hover {
+    background-color: var(--brown-hover) !important;
+    box-shadow: var(--shadow-md) !important;
+    border-color: var(--brown-dark) !important;
+    transform: translateY(-1px);
+}
+
+[data-testid="stFileUploader"] button::before {
+    content: "Browse Files" !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    color: #F8F2E5 !important;
+    display: block !important;
+}
+
+[data-testid="stFileUploader"] button * {
+    display: none !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Expander / Accordion (Scroll-Style Panels)
+   ─────────────────────────────────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    background-color: var(--parch-light) !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
+    margin-bottom: var(--gap-sm) !important;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease !important;
+}
+
+[data-testid="stExpander"]:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Expander summary / trigger */
+[data-testid="stExpander"] summary {
+    font-family: var(--font-heading) !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    color: var(--brown-dark) !important;
+    padding: 14px 20px !important;
+    border-bottom: 1px solid var(--border-light);
+    transition: color 0.2s ease !important;
+    list-style: none;
+}
+
+[data-testid="stExpander"] summary:hover {
+    color: var(--gold) !important;
+}
+
+[data-testid="stExpander"] > div > div {
+    padding: 16px 20px !important;
+    background-color: var(--parch-light);
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Tabs
+   ─────────────────────────────────────────────────────────────────────── */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 0 !important;
+    background: transparent !important;
+    border-bottom: 2px solid var(--border) !important;
+    padding: 0 !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    font-family: var(--font-nav) !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    color: var(--brown-primary) !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+    margin-bottom: -2px !important;
+    padding: 10px 20px !important;
+    border-radius: 0 !important;
+    transition: color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: var(--gold) !important;
+    background: rgba(163, 106, 42, 0.06) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: var(--brown-dark) !important;
+    border-bottom: 2px solid var(--gold) !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Alert / Status Boxes
+   ─────────────────────────────────────────────────────────────────────── */
+.stAlert {
+    font-family: var(--font-body) !important;
+    font-size: 1rem !important;
+    background-color: var(--parch-mid) !important;
+    border: 1px solid var(--border) !important;
+    border-left: 4px solid var(--gold) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--brown-dark) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.stAlert p, .stAlert span {
+    color: var(--brown-dark) !important;
+    font-family: var(--font-body) !important;
+}
+
+/* Specific alert types */
+div[data-baseweb="notification"][kind="positive"] {
+    border-left-color: var(--brown-primary) !important;
+}
+div[data-baseweb="notification"][kind="negative"] {
+    border-left-color: var(--brown-dark) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Progress Bar
+   ─────────────────────────────────────────────────────────────────────── */
+.stProgress > div > div > div {
+    background-color: var(--parch-dark) !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--border) !important;
+}
+
+.stProgress > div > div > div > div {
+    background-color: var(--gold) !important;
+    border-radius: 999px !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Data Tables / DataFrames
+   ─────────────────────────────────────────────────────────────────────── */
+[data-testid="stDataFrame"] {
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: var(--shadow-sm) !important;
+    overflow: hidden;
+}
+
+/* Plotly Chart Containers */
+[data-testid="stPlotlyChart"] {
+    background-color: var(--parch-light) !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: var(--gap-sm) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Streamlit generic markdown container
+   ─────────────────────────────────────────────────────────────────────── */
+[data-testid="stMarkdownContainer"] strong {
+    color: var(--brown-primary) !important;
+    font-weight: 700;
+}
+
+[data-testid="stMarkdownContainer"] em {
+    color: var(--gold) !important;
+    font-style: italic;
+}
+
+[data-testid="stMarkdownContainer"] code {
+    font-family: 'Courier New', monospace !important;
+    background-color: var(--parch-mid) !important;
+    color: var(--brown-primary) !important;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xs);
+    padding: 2px 6px;
+    font-size: 0.9em;
+}
+
+/* Bullet lists */
+[data-testid="stMarkdownContainer"] ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+[data-testid="stMarkdownContainer"] ul li::before {
+    content: "✦ ";
+    color: var(--gold);
+    font-size: 0.75em;
+    margin-right: 6px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Scrollbar
+   ─────────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--parch-mid); }
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+    border: 2px solid var(--parch-mid);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--brown-primary); }
+
+/* ───────────────────────────────────────────────────────────────────────
+   Streamlit Top Toolbar / Header (hide or neutralise)
+   ─────────────────────────────────────────────────────────────────────── */
+header[data-testid="stHeader"] {
+    background-color: var(--parch-light) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Utility Vintage Card Class
+   Use in st.markdown(..., unsafe_allow_html=True):
+     <div class="vintage-card">...</div>
+   ─────────────────────────────────────────────────────────────────────── */
+.vintage-card {
+    background-color: var(--parch-light);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    margin-bottom: var(--gap-md);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.vintage-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+.vintage-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+/* Section heading ornament — place after a heading */
+.ornament {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 12px;
+    display: block;
+    margin: 6px 0 var(--gap-md) 0;
+    opacity: 0.7;
+}
+
+/* Vintage badge / tag */
+.vintage-badge {
+    display: inline-block;
+    font-family: var(--font-nav);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--brown-primary);
+    background: var(--parch-mid);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2px 8px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Override any lingering Streamlit default blues / purples / greens
+   ─────────────────────────────────────────────────────────────────────── */
+a {
+    color: var(--gold) !important;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+a:hover {
+    color: var(--brown-primary) !important;
+    border-bottom-color: var(--gold);
+}
+
+/* Kill Streamlit's default primary accent color on interactive elements */
+[data-baseweb="select"] [aria-selected="true"] {
+    background-color: var(--parch-mid) !important;
+    color: var(--brown-dark) !important;
+}
+
+/* Spinner */
+.stSpinner > div {
+    border-top-color: var(--gold) !important;
+    border-right-color: var(--border) !important;
+    border-bottom-color: var(--border) !important;
+    border-left-color: var(--border) !important;
+}

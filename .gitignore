@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+data/sqlite/
+data/uploads/
+data/vector_db/
