@@ -3,9 +3,11 @@ import importlib
 import logging
 import os
 
-# Redirect all heavy AI model downloads to E: drive to solve C: drive space issues
-os.environ["HF_HOME"] = "E:\\MagazineIQ_Models"
-os.environ["TRANSFORMERS_CACHE"] = "E:\\MagazineIQ_Models"
+# Redirect heavy AI model downloads to E: drive if available, otherwise default
+if os.path.exists("E:\\"):
+    os.environ["HF_HOME"] = "E:\\MagazineIQ_Models"
+    os.environ["TRANSFORMERS_CACHE"] = "E:\\MagazineIQ_Models"
+
 
 
 # Configure logging for production
