@@ -36,14 +36,11 @@ class EntityExtractor:
             logger.info(f"spaCy model '{SPACY_MODEL}' loaded successfully.")
             return nlp
         except OSError:
-            logger.error(
-                f"spaCy model '{SPACY_MODEL}' not found. "
-                f"Run: python -m spacy download {SPACY_MODEL}"
-            )
-            raise RuntimeError(
-                f"Required spaCy model '{SPACY_MODEL}' is not installed. "
-                f"Please run: python -m spacy download {SPACY_MODEL}"
-            )
+            logger.info(f"spaCy model '{SPACY_MODEL}' not found. Downloading automatically...")
+            from spacy.cli import download
+            download(SPACY_MODEL)
+            return spacy.load(SPACY_MODEL)
+
 
     # ------------------------------------------------------------------
     # Private helpers

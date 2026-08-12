@@ -150,9 +150,15 @@ class Summarizer:
         try:
             nlp = spacy.load("en_core_web_sm")
         except OSError:
-            logger.error("SpaCy model not found for fallback. Returning truncated text.")
-            words = text.split()
-            return " ".join(words[:max_words])
+            logger.info("spaCy model 'en_core_web_sm' not found. Downloading automatically...")
+            from spacy.cli import download
+            download("en_core_web_sm")
+            try:
+                nlp = spacy.load("en_core_web_sm")
+            except Exception:
+                words = text.split()
+                return " ".join(words[:max_words])
+
 
         doc = nlp(text[:100_000])  # Guard against very long texts
         sentences = list(doc.sents)
