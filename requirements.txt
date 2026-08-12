@@ -3,6 +3,7 @@ PyMuPDF
 spacy
 transformers
 torch
+torchvision
 yake
 pandas
 plotly
